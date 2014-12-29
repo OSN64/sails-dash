@@ -1,0 +1,29 @@
+<form class="show">
+	<div class="form-group">
+		<h2> a system... </h2>
+		
+	<div class="form-group" style="width: 400px;">
+	<label>name</label>
+	<input value="<%= system.uptime %>" name="uptime" type="text" class="form-control" disabled/>
+	</div>
+
+	<div class="form-group" style="width: 400px;">
+	<label>name</label>
+	<input value="<%= system.loadavg %>" name="loadavg" type="text" class="form-control" disabled/>
+	</div>
+
+	<div class="form-group" style="width: 400px;">
+	<label>name</label>
+	<input value="<%= system.freemem %>" name="freemem" type="text" class="form-control" disabled/>
+	</div>
+
+	<div class="form-group" style="width: 400px;">
+	<label>name</label>
+	<input value="<%= system.cpus %>" name="cpus" type="text" class="form-control" disabled/>
+	</div>
+
+</div>
+</div>
+<a href="/system/edit/<%=system.id %>" class="btn btn-default">Edit</a> |
+<a href="/system">Back to list</a>
+</form>

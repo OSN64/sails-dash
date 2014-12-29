@@ -1,0 +1,15 @@
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">All Images</h3>
+  </div>
+  <div class="panel-body">
+   <div id="homeUplGallery" class="row thumb">
+    {{#each images}}
+    <a class="img-thumbnail {{!-- fancybox-thumbs --}}" rel="group" data-fancybox-group="thumb" href="/image/{{name}}">
+      <img class="img-responsive" style="width: 200px; height: 200px;" src="/image/{{name}}">
+    </a>
+    {{/each}}
+  </div>
+</div>
+</div>

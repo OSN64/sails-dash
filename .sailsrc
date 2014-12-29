@@ -1,5 +1,7 @@
 {
   "generators": {
-    "modules": {}
+    "modules": {
+      "scaffold": "sails-generate-scaffold"
+    }
   }
 }

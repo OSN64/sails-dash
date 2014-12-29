@@ -24,6 +24,11 @@ module.exports.sockets = {
   onConnect: function(session, socket) {
 
     // By default, do nothing.
+    // socket.on('allorders', function(data) {
+    //     console.log("User sent this"+ data.user );
+    // });
+      var osDetail = mainService.getOsDetail();
+      socket.emit("statinit",osDetail)
 
   },
 
@@ -49,12 +54,12 @@ module.exports.sockets = {
   * flashsockets by adding 'flashsocket' to this list:                       *
   *                                                                          *
   ***************************************************************************/
-  // transports: [
-  //   'websocket',
-  //   'htmlfile',
-  //   'xhr-polling',
-  //   'jsonp-polling'
-  // ],
+  transports: [
+    'websocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
+  ],
 
   /***************************************************************************
   *                                                                          *
@@ -63,7 +68,7 @@ module.exports.sockets = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'memory',
+  adapter: 'memory',
 
   /***************************************************************************
   *                                                                          *

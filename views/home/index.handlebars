@@ -1,0 +1,29 @@
+{{!-- {{> hNav}} --}}
+<div class="jumbotron">
+  <div class="container">
+    <h1>Image Host/Upload</h1>
+    <p>This site is allows users to upload images and is uses node as backbone</p>
+    <p>
+      <a class="btn btn-primary btn-lg">Learn more</a>
+    </p>
+  </div>
+  <h2>Upload Images Here</h2>
+
+  <form action="/image/upload" class="dropzone" id="imageFile">
+     <div class="fallback">
+      <input name="file"  class="btn btn-primary" type="file" multiple />
+    </div>
+  </form>
+  <div class="progress">
+    <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"  style="width: 0%;">
+    </div>
+  </div>
+  <h2>Uploaded Images</h2>
+  <div id="homeUplGallery" class="row">
+  {{!-- <a class="img-thumbnail" href="#">
+    <img class="img-responsive" style="width: 200px; height: 200px;" src="http://placehold.it/200" alt="">
+  </a> --}}
+  </div>
+
+
+</div>

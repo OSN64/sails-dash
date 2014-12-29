@@ -1,0 +1,41 @@
+<div class="container">
+	<h3>System Listing</h3>
+	<table class='table table-hover table-condensed'>
+	<tr>
+
+	<th> uptime </th>
+
+	<th> loadavg </th>
+
+	<th> freemem </th>
+
+	<th> cpus </th>
+
+	<th></th>
+	<th></th>
+	<th></th>
+</tr>
+	<% _.forEach(systems, function(system) { %>
+    		<tr data-id="<%=system.id %>" data-model="system">
+		
+			<td><%= system.uptime%></td>
+		
+			<td><%= system.loadavg%></td>
+		
+			<td><%= system.freemem%></td>
+		
+			<td><%= system.cpus%></td>
+		
+			<td><a href="/system/show/<%=system.id %>"  class="btn btn-primary btn-sm" role="button">Show</a></td>
+			<td><a href="/system/edit/<%=system.id %>"  class="btn btn-primary btn-sm" role="button">Edit</a></td>
+
+			<td><form action="/system/destroy/<%=system.id %>" method="POST">
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" value="Delete"  class="btn btn-danger btn-sm" role="button"/>
+			</form></td>
+		</tr>
+<% }) %>
+	</table>
+	<a href="/system/new/" class="btn btn-success btn-sm" role="button">New System</a> |
+	<a href="/">all scaffolds</a>
+</div>
