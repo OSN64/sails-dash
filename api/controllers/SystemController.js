@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-	
+
   'new': function(req,res){
-    res.view();    
+    res.view();
   },
 
   create: function(req, res) {
@@ -25,7 +25,7 @@ module.exports = {
 
     }
 
-    // Create a User with the params sent from 
+    // Create a User with the params sent from
     // the sign-up form --> new.ejs
     System.create(paramObj, function systemCreated(err, system) {
 
@@ -58,7 +58,7 @@ module.exports = {
   index: function(req, res, next) {
     System.find(function foundSystems(err, systems) {
       if (err) return next(err);
-      
+
       res.view({
         systems: systems
       });
@@ -115,13 +115,39 @@ module.exports = {
 
       System.destroy(req.param('id'), function systemDestroyed(err) {
         if (err) return next(err);
-    });        
+    });
 
       res.redirect('/system');
 
     });
-  }
- 
+  },
+   // This action works with app.js socket.get('/user/subscribe') to
+  // subscribe to the User model classroom and instances of the user
+  // model
+  subscribe: function(req, res) {
+    console.log("subscribe")
+    // Find all current users in the user model
+    System.find(function foundSystems(err, systems) {
+      if (err) return next(err);
 
+      // subscribe this socket to the User model classroom
+      System.subscribe(req.socket);
+
+      // subscribe this socket to the user instance rooms
+      System.subscribe(req.socket, systems);
+
+      // This will avoid a warning from the socket for trying to render
+      // html over the socket.
+      res.send(200);
+    });
+  },
+  watch: function(req,res){
+    console.log("watch")
+    System.watch(req)
+  },
+  unwatch: function(req,res){
+    console.log("unwatch")
+    System.unwatch(req)
+  }
 };
 

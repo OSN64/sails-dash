@@ -2,14 +2,14 @@
 	<div class="form-group">
 	<h2>Create a system</h2>
 
-<% if(flash && flash.err) { %>
+{{!-- <% if(flash && flash.err) { %>
 <ul class="alert alert-success">
 <% Object.keys(flash.err).forEach(function(error) { %>
 <li><%- JSON.stringify(flash.err[error]) %></li>
 <% }) %>
 </ul>
-<% } %>
-	
+<% } %> --}}
+
 	<div class="control-group" style = "width: 300px;">
 	<input type="text" class="form-control" placeholder="uptime" name="uptime">
 	</div>
@@ -27,6 +27,6 @@
 	</div>
 
 	</div>
-	<input type="submit" value="Submit" class="btn btn-default"/> | 
+	<input type="submit" value="Submit" class="btn btn-default"/> |
 	<a href="/system">Back to list</a>
 </form>

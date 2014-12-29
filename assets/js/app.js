@@ -56,7 +56,8 @@ $(document).ready(function() {
   io.socket.on('connect', function() {
     // io.socket.emit('msg', "Hello just joined");
     // subscribe to data
-    socket.get('/system/subscribe');
+    // watch for new system data
+    io.socket.get('/system/watch');
     console.log("connected to server")
   });
   io.socket.on("statinit", function(osDetail) {
@@ -71,6 +72,17 @@ $(document).ready(function() {
     $('#os-totmem').text(bytesToSize(os.totalMem))
     updateCpus(os.cpus);
 
+  });
+  io.socket.on('system',function onServerSentSystemEvent(msg){
+    // Let's see what the server has to say...
+      switch(msg.verb) {
+        case 'created':
+          console.log("system create")
+          console.log(msg)
+          break;
+
+        default: return; // ignore any unrecognized messages
+      }
   })
 });
 // arch: "x64"

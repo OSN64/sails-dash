@@ -1,0 +1,44 @@
+<div class="container">
+	<h3>System Listing</h3>
+	<table class='table table-hover table-condensed'>
+   <tr>
+
+     <th> uptime </th>
+
+     <th> loadavg </th>
+
+     <th> freemem </th>
+
+     <th> cpus </th>
+
+     <th></th>
+     <th></th>
+     <th></th>
+   </tr>
+   {{!-- <% _.forEach(systems, function(system) { %> --}}
+   {{#each systems}}
+
+   <tr data-id="{{id}}" data-model="system">
+
+     <td>{{uptime}}</td>
+
+     <td>{{loadavg}}</td>
+
+     <td>{{freemem}}</td>
+
+     <td>{{cpus}}</td>
+
+     <td><a href="/system/show/{{id}}"  class="btn btn-primary btn-sm" role="button">Show</a></td>
+     <td><a href="/system/edit/{{id}}"  class="btn btn-primary btn-sm" role="button">Edit</a></td>
+
+     <td><form action="/system/destroy/{{id}}" method="POST">
+      <input type="hidden" name="_method" value="delete"/>
+      <input type="submit" value="Delete"  class="btn btn-danger btn-sm" role="button"/>
+    </form></td>
+  </tr>
+  {{/each}}
+  {{!-- <% }) %> --}}
+</table>
+<a href="/system/new/" class="btn btn-success btn-sm" role="button">New System</a> |
+<a href="/">all scaffolds</a>
+</div>

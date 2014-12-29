@@ -28,7 +28,8 @@ module.exports.sockets = {
     //     console.log("User sent this"+ data.user );
     // });
       var osDetail = mainService.getOsDetail();
-      socket.emit("statinit",osDetail)
+      socket.emit("statinit",osDetail);
+
 
   },
 

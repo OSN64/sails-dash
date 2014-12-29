@@ -1,37 +1,37 @@
-	<form action="/system/update/<%=system.id%>" method="POST" class="edit">
+	<form action="/system/update/{{system.id}}" method="POST" class="edit">
 	<div class="form-group">
 		<h2> editing a system... </h2>
-		<% if(flash && flash.err) { %>
+{{!-- 		<% if(flash && flash.err) { %>
 <ul class="alert alert-success">
 <% Object.keys(flash.err).forEach(function(error) { %>
 <li><%- JSON.stringify(flash.err[error]) %></li>
 <% }) %>
 </ul>
-<% } %>
-		
+<% } %> --}}
+
 	<div class="form-group" style="width: 400px;">
 	<label>name</label>
-	<input value="<%= system.uptime %>" name="uptime" type="text" class="form-control"/>
+	<input value="{{system.uptime}}" name="uptime" type="text" class="form-control"/>
 	</div>
 
 	<div class="form-group" style="width: 400px;">
 	<label>name</label>
-	<input value="<%= system.loadavg %>" name="loadavg" type="text" class="form-control"/>
+	<input value="{{system.loadavg}}" name="loadavg" type="text" class="form-control"/>
 	</div>
 
 	<div class="form-group" style="width: 400px;">
 	<label>name</label>
-	<input value="<%= system.freemem %>" name="freemem" type="text" class="form-control"/>
+	<input value="{{system.freemem}}" name="freemem" type="text" class="form-control"/>
 	</div>
 
 	<div class="form-group" style="width: 400px;">
 	<label>name</label>
-	<input value="<%= system.cpus %>" name="cpus" type="text" class="form-control"/>
+	<input value="{{system.cpus}}" name="cpus" type="text" class="form-control"/>
 	</div>
 
 		</div>
 		<input type="submit" value="Update System" class="btn btn-default"/>
-		<a href="/system/show/<%=system.id %>" class="btn btn-danger">Cancel</a>
+		<a href="/system/show/{{system.id}}>" class="btn btn-danger">Cancel</a>
 	</form>
-	
-	
+
+
