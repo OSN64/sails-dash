@@ -15,21 +15,16 @@ function updateFreeMem(freeMem) {
     var memUsed;
     // memUsed = freeMem;
     usedMem = (os.totalMem - freeMem);
-    memUsed = usedMem / os.totalMem;
-
-    console.log(os.totalMem)
-    console.log(freeMem)
-    console.log(usedMem)
-      // console.log(bytesToSize(freeMem))
-      // console.log(bytesToSize(os.totalMem))
-
-
-    $('#os-memUsed').text(memUsed)
+    memUsed = (usedMem / os.totalMem)* 100;
+    $('#os-memUsed').text(memUsed.toFixed(2) + '%')
   }
   // os.totalcpuusage
 function updateCpus(cpus) {
+  if (!cpus.length) return;
   var totCpu  =0
-  console.log(cpus)
+  // console.log(cpus)
+  // try last next
+  // https://stackoverflow.com/questions/9565912/convert-the-output-of-os-cpus-in-node-js-to-percentage
   for (var i = 0, len = cpus.length; i < len; i++) {
 
     var cpu = cpus[i],
@@ -49,8 +44,11 @@ function updateCpus(cpus) {
   os.totalcpuusage = totCpu * 4 /100; // pretty sure that allot of the cpu calculations are wrong
 }
 function displayUpdatedCpuData (cpu,usage){
-    console.log("CPU " + cpu + ": " + usage);
+    // console.log("CPU " + cpu + ": " + usage);
     $('#os-cpu-'+cpu).val(usage).trigger('change');
+}
+function updateUptime(uptime){
+  $('#os-uptime').text(Math.floor(uptime / 60))
 }
 $(document).ready(function() {
   io.socket.on('connect', function() {
@@ -61,7 +59,7 @@ $(document).ready(function() {
     console.log("connected to server")
   });
   io.socket.on("statinit", function(osDetail) {
-    console.log(osDetail);
+    // console.log(osDetail);
     os = osDetail;
     // set os details on screen
     $('#os-platform').text(capitalise(os.platform))
@@ -75,10 +73,12 @@ $(document).ready(function() {
   });
   io.socket.on('system',function onServerSentSystemEvent(msg){
     // Let's see what the server has to say...
+      // console.log(msg)
       switch(msg.verb) {
         case 'created':
-          console.log("system create")
-          console.log(msg)
+          updateCpus(msg.data.cpus)
+          updateFreeMem(msg.data.freemem)
+          updateUptime(msg.data.uptime)
           break;
 
         default: return; // ignore any unrecognized messages

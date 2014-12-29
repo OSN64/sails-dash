@@ -20,7 +20,7 @@ module.exports = {
       dev.values = index;
       formNetInter.push(dev)
     });
-    console.log(formNetInter);
+    // console.log(formNetInter);
     return res.view("home/dashboard", {
       title: "Home",
       cpus: cpus,

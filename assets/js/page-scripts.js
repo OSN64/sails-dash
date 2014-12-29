@@ -81,7 +81,17 @@ function loadFlot() {
     if (realtime === "on")
       setTimeout(update, updateInterval);
   }
-
+    io.socket.on('system',function onServerSentSystemEvent(msg){
+    // Let's see what the server has to say...
+      switch(msg.verb) {
+        case 'created':
+          // console.log(msg.data.loadavg)
+          var loadavgPer = (msg.data.loadavg[0]/os.cpus.length) * 100;
+          $('#os-loadavg').text(loadavgPer.toFixed(2) + '%')
+          break;
+        default: return; // ignore any unrecognized messages
+      }
+  })
   //INITIALIZE REALTIME DATA FETCHING
   if (realtime === "on") {
     update();
